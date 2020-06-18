@@ -1,0 +1,13 @@
+<form [formGroup]="mainForm" ng-submit="submitForm()">
+  Global Price: <input type="number" formControlName="globalPrice">
+  <button type="button" [disabled]="mainForm.get('globalPrice').value === null" (click)="applyPriceToAll()">Apply to all</button>
+  <table border formArrayName="orderLines">
+  <ng-container *ngFor="let orderLine of orderLines let i=index" [formGroupName]="i">
+    <tr>
+       <td>{{orderLine.time | date}}</td>
+       <td>{{orderLine.quantity}}</td>
+       <td><input formControlName="price" type="number"></td>
+    </tr>
+</ng-container>
+  </table>
+</form>
